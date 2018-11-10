@@ -1,0 +1,25 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX lmdb: <http://data.linkedmdb.org/movie/>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX imdb: <http://imdb.com/>
+PREFIX tmdb: <https://www.themoviedb.org/movie/>
+PREFIX db: <http://dbpedia.org/>
+PREFIX dbo: <http://dbpedia.org/ontology/>
+PREFIX im: <http://imgpedia.dcc.uchile.cl/resource/>
+PREFIX tm: <http://def.seegrid.csiro.au/isotc211/iso19108/2002/temporal#>
+
+SELECT  DISTINCT ?sub WHERE {
+  
+  ?sub rdf:type	lmdb:actor .
+  ?sub imdb:actor ?imdb_actor . #just with the imdb name (INVERSE FUNC PROP)
+  #?sub lmdb:actor_name ?lmdb_actorname .
+  
+  FILTER(STR(?imdb_actor) = "Amy Adams")
+
+}
+LIMIT 500
+
+
+

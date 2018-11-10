@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link href="https://cdn.rawgit.com/wouterbeek/Data-Stories/master/deps/yasgui.min.css" rel="stylesheet" type="text/css">
+        <p>This data story illustrates the flow of the web application.</p>
+
+  </head>
+  <body>
+    <h1 class="header">Homepage</h1>
+    <p>Lets imagine that the first thing you see is posters of movies followed by their names and some more info about the year the rating etc.
+    So we query the dataset asking for the movies and we also present them in ascending rate based on imdb:rating. </p>
+    <div class="container story" data-query-endpoint="http://localhost:5820/BestLinkedMovieDatabase/query">
+      <div data-query data-query-sparql="homepage_query.rq"></div>
+      <script src="https://cdn.rawgit.com/wouterbeek/Data-Stories/master/deps/yasgui.min.js?v=1"></script>
+      <script type="text/javascript">YASGUI.sparqlStories();</script>
+    </div>
+
+    <h1 class="header">Click on a Movie</h1>
+    <p>Assume now that there is a movie in which you are interested, so you click on it and then information about they movie are going to appear. The information shown are retrieved through a combination of the  IMDB dataset, the TMDB, and linkedMDB too.
+
+    Our ontology help us to do this as we have set equivelant classes the imdb:Movie with the tmdb:movie and the linkeddmb : movie too.Also the imdb:title has an inverse functional property and match the tmdb:title and the lmdb:title too. In this way when we are looking for a movie with a title we get all the different instances of movies either it is an imdb movie, a tmdb one etc.  A challenge here is to understand that even if they share the same unique title(key) they are still different things, the imdb carries a plot, or a the tmdb carries a popularity score. Thats why the UNION let us query both of these information.
+    The query below show the information that would be visualised to the user. As we can see we load instances for a specific movie from 3 different resources.
+    See the query for more details.  </p>
+    <div class="container story" data-query-endpoint="http://localhost:5820/BestLinkedMovieDatabase/query">
+      <div data-query data-query-sparql="click_movie.rq"></div>
+      <script src="https://cdn.rawgit.com/wouterbeek/Data-Stories/master/deps/yasgui.min.js?v=1"></script>
+      <script type="text/javascript">YASGUI.sparqlStories();</script>
+    </div>
+  
+    <h1 class="header">Click on a Director/Actor</h1>
+    <p>Lets assume now that while you are reading information about that specific movie, you want to find more information about this director or one of these actors, so you click in on of them. Once you clicked a query is going to search having the imdb:actor as parameter. We applied the same Inverse Functional Property between the imdb:actor and the lmdb:actor_name.
+    That was very useful because lmdb provide us with more information and even dbpedia links...   </p>
+    <div class="container story" data-query-endpoint="http://localhost:5820/BestLinkedMovieDatabase/query">
+      <div data-query data-query-sparql="click_actor.rq"></div>
+      <script src="https://cdn.rawgit.com/wouterbeek/Data-Stories/master/deps/yasgui.min.js?v=1"></script>
+      <script type="text/javascript">YASGUI.sparqlStories();</script>
+    </div>
+  </body>
+</html>

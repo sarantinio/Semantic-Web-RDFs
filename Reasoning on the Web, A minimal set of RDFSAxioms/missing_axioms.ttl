@@ -1,0 +1,9 @@
+rdf:_1 rdfs:subPropertyOf rdfs:member .
+
+rdf:Alt a rdfs:Resource ;
+        rdfs:subClassOf rdfs:Resource .
+rdf:langString a rdfs:Class , rdfs:Resource ;
+               rdfs:subClassOf rdfs:Literal ,
+               rdfs:Resource , rdf:langString .
+xsd:string a rdfs:Class , rdfs:Resource ;
+           rdfs:subClassOf rdfs:Literal , rdfs:Resource , xsd:string .
